@@ -11,11 +11,13 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^1.1.0",
+    "@astrojs/preact": "^3.0.1",
     "@astrojs/react": "^3.0.2",
     "@astrojs/rss": "^3.0.0",
     "@astrojs/sitemap": "^3.0.0",
     "@astrojs/tailwind": "^5.0.0",
-    "astro": "^3.2.0"
+    "astro": "^3.2.0",
+    "preact": "^10.18.1"
   },
   "devDependencies": {
     "@typescript-eslint/parser": "^6.7.3",

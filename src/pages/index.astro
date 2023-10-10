@@ -1,15 +1,16 @@
 ---
+import { Image } from "astro:assets";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import seftImage from "@assets/seft.jpg"
+
+const myName = "Tri Truong";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
-  </head>
-  <body>
-    <h1>Astro</h1>
-  </body>
-</html>
+<BaseLayout pageTitle="Home">
+  <header class="sm:flex sm:items-center sm:justify-between">
+    <div class="">
+      <h2 class="mb-2 text-3xl font-bold  dark:text-white text-slate-900 sm:text-4xl">{myName}</h2>
+    </div>
+    <Image src={seftImage} alt="my avatar" class="rounded-full aspect-square w-40 overflow-hidden inline-flex">
+  </header>
+</BaseLayout>

@@ -7,7 +7,9 @@
     "jsxImportSource": "react",
     "paths": {
       "@assets/*": ["public/*"],
-      "@layouts/*": ["src/layouts/*"]
+      "@layouts/*": ["src/layouts/*"],
+      "@components/*": ["src/components/*"],
+      "@data/*": ["src/data/*"]
     }
   }
 }

@@ -17,37 +17,39 @@ const favoriteTechnologies: {
 ];
 ---
 
-<BaseLayout pageTitle="Home">
-  <header class="sm:flex sm:items-center sm:justify-between sm:gap-4">
-    <div>
+<BaseLayout pageTitle={myName}>
+  <header class="pb-2">
+    <div class="flex items-center gap-2 pb-2">
+      <Image
+        src={seftImage}
+        alt="image of blog author"
+        width={60}
+        height={60}
+        class="rounded-full aspect-square overflow-hidden inline-flex"
+      />
       <h1
         class="mb-2 text-3xl font-bold dark:text-white text-slate-900 sm:text-4xl"
       >
         {myName}
       </h1>
-      <p>
-        Welcome to my blog. I currently work as a full-stack web developer. In
-        this blog, I will share my knowledge about programming with you.
-      </p>
     </div>
-    <Image
-      src={seftImage}
-      alt="image of blog author"
-      width={320}
-      height={320}
-      class="rounded-full aspect-square overflow-hidden inline-flex"
-    />
+    <p>
+      Welcome to my blog. I currently work as a full-stack web developer. In
+      this blog, I will share my knowledge about programming with you.
+    </p>
   </header>
 
-  <div>
-    <h2 class="text-2xl font-bold tracking-tight mb-4 dark:text-white text-slate-900 sm:text-3xl">
+  <div class="pb-2">
+    <h2
+      class="text-2xl font-bold tracking-tight mb-4 dark:text-white text-slate-900 sm:text-3xl"
+    >
       My faviorite technologies
     </h2>
     <p>
       Here is a list of technologies that I have worked with at school, side
       projects and working.
     </p>
-    <ul class="grid sm:grid-cols-2 right-1 gap-4">
+    <ul class="grid sm:grid-cols-4 right-1 gap-4">
       {
         favoriteTechnologies.map((tech) => (
           <li class="flex items-center gap-2">
@@ -62,14 +64,12 @@ const favoriteTechnologies: {
   </div>
 
   <div>
-    <h2 class="text-2xl font-bold tracking-tight mb-4 dark:text-white text-slate-900 sm:text-3xl">
+    <h2
+      class="text-2xl font-bold tracking-tight mb-4 dark:text-white text-slate-900 sm:text-3xl"
+    >
       Tags
     </h2>
-    <p>
-      Here is a list tag for blogs
-    </p>
-    <ul class="grid sm:grid-cols-2 right-1 gap-4">
-      
-    </ul>
+    <p>Here is a list tag for blogs</p>
+    <ul class="grid sm:grid-cols-2 right-1 gap-4"></ul>
   </div>
 </BaseLayout>

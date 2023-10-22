@@ -1,0 +1,41 @@
+---
+import Icon from "astro-icon";
+
+const sunIcon = "ph:sun";
+const moonIcon = "ph:moon";
+---
+
+<button id="themeToggle">
+  <Icon id="sunIcon" name={sunIcon} class="w-5" />
+  <Icon id="moonIcon" name={moonIcon} class="w-5" />
+</button>
+
+<script is:inline>
+let currTheme = localStorage.getItem("theme") ?? "light";
+const toggleThemeBtn = document.getElementById("themeToggle");
+const sunIconEl = document.getElementById("sunIcon");
+const moonIconEl = document.getElementById("moonIcon");
+
+if (currTheme === "dark") {
+  sunIconEl.classList.toggle("hidden");
+} else {
+  moonIconEl.classList.toggle("hidden");
+}
+
+const toggleTheme = () => {
+  currTheme = currTheme === "dark" ? "light" : "dark";
+
+  sunIconEl.classList.toggle("hidden");
+  moonIconEl.classList.toggle("hidden");
+
+  if (currTheme === "dark") {
+    document.documentElement.classList.add("dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+  }
+
+  localStorage.setItem("theme", currTheme);
+};
+
+toggleThemeBtn.addEventListener("click", toggleTheme);
+</script>

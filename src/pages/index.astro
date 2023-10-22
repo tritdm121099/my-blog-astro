@@ -1,15 +1,77 @@
 ---
+import "../styles/global.css";
+import { Image } from "astro:assets";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import seftImage from "@assets/seft.jpg";
+import Icon from "astro-icon";
+import Socials from "../components/Socials.astro";
+
+const myName = "Tri Truong";
+const favoriteTechnologies: {
+  icon: string;
+  label: string;
+}[] = [
+  { icon: "logos:nodejs-icon", label: "Nodejs" },
+  { icon: "logos:typescript-icon", label: "TypeScript" },
+  { icon: "logos:angular-icon", label: "Angular" },
+  { icon: "logos:nestjs", label: "NestJS" },
+];
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
-  </head>
-  <body>
-    <h1>Astro</h1>
-  </body>
-</html>
+<BaseLayout pageTitle={myName}>
+  <header class="pb-2">
+    <div class="flex items-center gap-2 pb-2">
+      <Image
+        src={seftImage}
+        alt="image of blog author"
+        width={60}
+        height={60}
+        class="rounded-full aspect-square overflow-hidden inline-flex"
+      />
+      <h1
+        class="mb-2 text-3xl font-bold dark:text-white text-slate-900 sm:text-4xl"
+      >
+        {myName}
+      </h1>
+    </div>
+    <Socials />
+    <p>
+      Welcome to my blog. I currently work as a full-stack web developer. In
+      this blog, I will share my knowledge about programming with you.
+    </p>
+  </header>
+
+  <div class="pb-2">
+    <h2
+      class="text-2xl font-bold tracking-tight mb-4 dark:text-white text-slate-900 sm:text-3xl"
+    >
+      My faviorite technologies
+    </h2>
+    <p>
+      Here is a list of technologies that I have worked with at school, side
+      projects and working.
+    </p>
+    <ul class="grid sm:grid-cols-4 right-1 gap-4">
+      {
+        favoriteTechnologies.map((tech) => (
+          <li class="flex items-center gap-2">
+            <div class="w-11 h-11 flex items-center justify-center border-t dark:border-zinc-900 border-transparent shadow dark:shadow-none bg-gray-300 dark:bg-zinc-800 rounded-full">
+              <Icon name={tech.icon} class="w-6" />
+            </div>
+            {tech.label}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+  <div>
+    <h2
+      class="text-2xl font-bold tracking-tight mb-4 dark:text-white text-slate-900 sm:text-3xl"
+    >
+      Tags
+    </h2>
+    <p>Here is a list tag for blogs</p>
+    <ul class="grid sm:grid-cols-2 right-1 gap-4"></ul>
+  </div>
+</BaseLayout>

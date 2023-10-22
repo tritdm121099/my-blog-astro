@@ -1,0 +1,32 @@
+---
+import Icon from "astro-icon";
+
+const socials = [
+  {
+    social: "Github",
+    icon: "fe:github-alt",
+    link: "https://github.com/tdmtri99",
+  },
+  {
+    social: "LinkedIn",
+    icon: "la:linkedin-in",
+    link: "https://www.linkedin.com/in/nin-tri-truong/",
+  },
+];
+---
+
+<div class="w-full flex gap-2 mb-4">
+  {
+    socials.map((social) => (
+      <a
+        href={social.link}
+        rel="noreferrer"
+        target="_blank"
+        aria-label={`Redirect to ${social.social} of author`}
+        class="w-8 h-8 flex items-center justify-center rounded-full border border-gray-300 dark:border-gray-700 hover:text-blue-600 hover:border-blue-600 transition-colors duration-200 ease-in-out"
+      >
+        <Icon name={social.icon} class="w-6" />
+      </a>
+    ))
+  }
+</div>

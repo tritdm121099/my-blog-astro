@@ -1,0 +1,46 @@
+---
+import type { MarkdownInstance } from "astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { myName } from "../../data";
+import type { Frontmatter } from "../../models";
+import dayjs from "dayjs";
+import localizedFormat from "dayjs/plugin/localizedFormat";
+dayjs.extend(localizedFormat)
+
+interface StaticPath {
+  params: { slug: string };
+  props: { blog: MarkdownInstance<Frontmatter> };
+}
+
+export async function getStaticPaths(): Promise<Array<StaticPath>> {
+  const glob = await Astro.glob<MarkdownInstance<Frontmatter>>(
+    "../../blogs/*.{md,mdx}"
+  );
+  return new Promise((resolver) => {
+    resolver(
+      glob.map((blog) => {
+        return {
+          params: { slug: blog.frontmatter.slug },
+          props: { blog },
+        };
+      })
+    );
+  });
+}
+
+const { blog } = Astro.props as { blog: MarkdownInstance<Frontmatter> };
+const { Content, frontmatter } = blog;
+---
+
+<BaseLayout pageTitle=`${frontmatter.title} | ${myName}`>
+  <h1 class="text-left text-4xl font-bold mb-6">
+    {frontmatter.title}
+  </h1>
+  <time datetime={dayjs(frontmatter.publishedAt).format("L")}>
+    Posted on {dayjs(frontmatter.publishedAt).format("L")}
+  </time>
+
+  <section>
+    <Content />
+  </section>
+</BaseLayout>

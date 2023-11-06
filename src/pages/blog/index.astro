@@ -1,0 +1,31 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { myName } from "../../data";
+import type { Frontmatter } from "@models/frontmatter";
+import dayjs from "dayjs";
+import BlogList from "../../components/BlogList.astro";
+import type { MarkdownInstance } from "astro";
+
+const pageTitle = `Blogs | ${myName}`;
+
+const glob = await Astro.glob<MarkdownInstance<Frontmatter>>(
+  "../../blogs/*.{md,mdx}"
+);
+
+const blogs = glob.map((data) => data.frontmatter);
+blogs.sort((a: Frontmatter, b: Frontmatter) =>
+  dayjs(a.publishedAt).diff(dayjs(b.publishedAt), "s")
+);
+---
+
+<BaseLayout pageTitle={pageTitle}>
+  <header
+    class="pb-5 flex justify-center px-10 py-5 border-b border-gray-700 dark:border-gray-300 mb-10"
+  >
+    <h1>Blog</h1>
+  </header>
+
+  <section>
+    <BlogList blogs={blogs} />
+  </section>
+</BaseLayout>

@@ -5,7 +5,7 @@ import { myName } from "../../data";
 import type { Frontmatter } from "../../models";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
-dayjs.extend(localizedFormat)
+dayjs.extend(localizedFormat);
 
 interface StaticPath {
   params: { slug: string };
@@ -14,7 +14,7 @@ interface StaticPath {
 
 export async function getStaticPaths(): Promise<Array<StaticPath>> {
   const glob = await Astro.glob<MarkdownInstance<Frontmatter>>(
-    "../../blogs/*.{md,mdx}"
+    "../../blogs/*.{md,mdx}",
   );
   return new Promise((resolver) => {
     resolver(
@@ -23,7 +23,7 @@ export async function getStaticPaths(): Promise<Array<StaticPath>> {
           params: { slug: blog.frontmatter.slug },
           props: { blog },
         };
-      })
+      }),
     );
   });
 }
@@ -40,7 +40,7 @@ const { Content, frontmatter } = blog;
     Posted on {dayjs(frontmatter.publishedAt).format("L")}
   </time>
 
-  <section>
+  <section class="blog-content">
     <Content />
   </section>
 </BaseLayout>

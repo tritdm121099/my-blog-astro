@@ -14,7 +14,7 @@ interface StaticPath {
 
 export async function getStaticPaths(): Promise<Array<StaticPath>> {
   const glob = await Astro.glob<MarkdownInstance<Frontmatter>>(
-    "../../blogs/*.{md,mdx}",
+    "../../blogs/*.{md,mdx}"
   );
   return new Promise((resolver) => {
     resolver(
@@ -23,7 +23,7 @@ export async function getStaticPaths(): Promise<Array<StaticPath>> {
           params: { slug: blog.frontmatter.slug },
           props: { blog },
         };
-      }),
+      })
     );
   });
 }
@@ -33,7 +33,7 @@ const { Content, frontmatter } = blog;
 ---
 
 <BaseLayout pageTitle=`${frontmatter.title} | ${myName}`>
-  <h1 class="text-left text-4xl font-bold mb-6">
+  <h1 class="text-left text-5xl font-bold mb-6">
     {frontmatter.title}
   </h1>
   <time datetime={dayjs(frontmatter.publishedAt).format("L")}>
@@ -44,3 +44,36 @@ const { Content, frontmatter } = blog;
     <Content />
   </section>
 </BaseLayout>
+
+<style is:global>
+  .ribbon {
+    --c: #1470d8;
+
+    border-image: conic-gradient(
+        from 45deg at calc(100% - 1lh),
+        #0000 25%,
+        var(--c) 0
+      )
+      fill 0 //0 0 0 100vw;;
+    padding-right: 1.3lh;
+    line-height: 1.5em; /* control the height */
+    width: fit-content; /* you probably don't need this if your element is already shrink-to-fit*/
+  }
+
+  @supports not (padding: 1lh) {
+    /* in case the lh unit is not available fallback to em */
+    .ribbon {
+      border-image: conic-gradient(
+          from 45deg at calc(100% - 1.5em) 50%,
+          #0000 25%,
+          var(--c) 0
+        )
+        fill 0 //0 0 0 100vw;;
+      padding-right: 2em;
+    }
+  }
+
+  .blog-content h2 {
+    @apply ribbon text-white text-4xl;
+  }
+</style>

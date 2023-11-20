@@ -18,7 +18,9 @@ const { pageTitle } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
   </head>
-  <body class="antialiased text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-900">
+  <body
+    class="antialiased text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-900"
+  >
     <Header />
 
     <main class="px-6 lg:px-0 mx-auto max-w-3xl">
@@ -27,3 +29,28 @@ const { pageTitle } = Astro.props;
   </body>
 </html>
 
+<style is:global>
+  h1 {
+    @apply text-5xl;
+  }
+
+  h2 {
+    @apply text-4xl;
+  }
+
+  h3 {
+    @apply text-3xl;
+  }
+
+  h4 {
+    @apply text-2xl;
+  }
+
+  h5 {
+    @apply text-xl;
+  }
+
+  h6 {
+    @apply text-lg;
+  }
+</style>

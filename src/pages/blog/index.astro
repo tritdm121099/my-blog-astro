@@ -13,10 +13,12 @@ const glob = await Astro.glob<MarkdownInstance<Frontmatter>>(
   "../../blogs/*.{md,mdx}"
 );
 
-const blogs = glob.map((data) => data.frontmatter);
-blogs.filter(filterBlogNotComplete).sort((a: Frontmatter, b: Frontmatter) =>
-  dayjs(a.publishedAt).diff(dayjs(b.publishedAt), "s")
-);
+const blogs = glob
+  .filter((blog) => filterBlogNotComplete(blog.frontmatter))
+  .map((data) => data.frontmatter)
+  .sort((a: Frontmatter, b: Frontmatter) =>
+    dayjs(a.publishedAt).diff(dayjs(b.publishedAt), "s")
+  );
 ---
 
 <BaseLayout pageTitle={pageTitle}>

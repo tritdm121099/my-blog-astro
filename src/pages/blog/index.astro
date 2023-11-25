@@ -5,6 +5,7 @@ import type { Frontmatter } from "@models/frontmatter";
 import dayjs from "dayjs";
 import BlogList from "../../components/BlogList.astro";
 import type { MarkdownInstance } from "astro";
+import { filterBlogNotComplete } from "../../data/utils";
 
 const pageTitle = `Blogs | ${myName}`;
 
@@ -13,7 +14,7 @@ const glob = await Astro.glob<MarkdownInstance<Frontmatter>>(
 );
 
 const blogs = glob.map((data) => data.frontmatter);
-blogs.sort((a: Frontmatter, b: Frontmatter) =>
+blogs.filter(filterBlogNotComplete).sort((a: Frontmatter, b: Frontmatter) =>
   dayjs(a.publishedAt).diff(dayjs(b.publishedAt), "s")
 );
 ---

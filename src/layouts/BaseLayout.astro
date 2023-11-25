@@ -19,17 +19,21 @@ const { pageTitle } = Astro.props;
     <title>{pageTitle}</title>
   </head>
   <body
-    class="antialiased text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-900"
+    class="h-screen antialiased text-slate-500 dark:text-slate-400 bg-gray-200 dark:bg-slate-900"
   >
     <Header />
 
-    <main class="px-6 lg:px-0 mx-auto max-w-3xl">
+    <main class="mt-16 px-6 lg:px-0 mx-auto max-w-3xl">
       <slot />
     </main>
   </body>
 </html>
 
 <style is:global>
+  * {
+    @apply box-border;
+  }
+
   h1 {
     @apply text-5xl;
   }

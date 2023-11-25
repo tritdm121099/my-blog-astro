@@ -21,8 +21,8 @@ const { blogs } = Astro.props;
         <time datetime={dayjs(blog.publishedAt).format("L")}>
           {dayjs(blog.publishedAt).format("L")}
         </time>
-        <a href=`blog/${blog.slug}` >
-          <h2>{blog.title}</h2>
+        <a href=`../blog/${blog.slug}` >
+          <h2 class="text-4xl">{blog.title}</h2>
         </a>
 
         <ul>

@@ -11,7 +11,7 @@ const {tag} = Astro.props;
 
 ---
 
-<a href=`tag/${tag}` class="inline-flex gap-2 items-center px-3 py-1 rounded-full bg-transparent border transition-colors duration-200 border-gray-800 dark:border-gray-200 hover:bg-opacity-50">
+<a href=`tag/${tag.toLocaleLowerCase()}` class="inline-flex gap-2 items-center px-3 py-1 rounded-full bg-transparent border transition-colors duration-200 border-gray-800 dark:border-gray-200 hover:bg-opacity-50">
   <Icon name={getTagIcon(tag)} class="w-6" />
   <p>{tag}</p>
 </a>

@@ -6,4 +6,5 @@ export interface Frontmatter {
   publishedAt: string;
   tags: Tag[];
   slug: string;
+  isComplete: boolean;
 }

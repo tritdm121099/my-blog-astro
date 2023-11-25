@@ -4,6 +4,7 @@ description: My version of setting up a Windows for Web Development in 2023
 slug: dev-environment-setup-windows
 publishedAt: 2023-08-01
 tags: ["Programming"]
+isComplete: true
 ---
 
 > In this setup I use [Windows PowerShell](https://learn.microsoft.com/en-us/powershell/scripting/overview?view=powershell-7.4) is a shell to setup
@@ -47,8 +48,8 @@ scoop install main/git
 
 > Login Github in browser by command line [Learn more](https://cli.github.com/)
 
-1.  Login Github in your browser
-2.  Install Github CLI
+1. Login Github in your browser
+2. Install Github CLI
 
 **winget**
 
@@ -75,9 +76,9 @@ gh auth login
 **After it press enter and enter code has generate**
 ![Enter code to login github in browser](../../public//dev-setup-in-windows//github_login_code.png)
 
-### Git UI
+### Git GUI
 
-[Fork](https://git-fork.com/)
+My option is [Fork](https://git-fork.com/). Many others Git GUI like [SourceTree](https://www.sourcetreeapp.com/), [GitKraken](https://www.gitkraken.com/)
 
 ## Text Editor
 
@@ -97,9 +98,58 @@ scoop bucket add main
 scoop install main/neovim
 ```
 
+## Terminal
+
+My choice is **Windows Terminal**. You can choose other Terminal like: [WezTerm](https://wezfurlong.org/wezterm/install/windows.html), [Hyper](https://hyper.is/) and [ConEmu](https://conemu.github.io/), [Git Cola](https://git-cola.github.io/), ect...
+`Fork` is friendly, easy to use for me.
+To install run
+
+```bash
+winget install Fork.Fork
+```
+
+
+### Installing Windows Terminal
+
+It default in Windows 11. For manual install in [Microsoft Store](https://apps.microsoft.com/detail/9N0DX20HK701?hl=en-US&gl=US) in Windows 10.
+
+### Terminal Theme ([Oh My Posh](https://ohmyposh.dev/docs/installation/windows))
+
+![Result Terminal Theme](../../public/dev-setup-in-windows/theme_terminal.png)
+
+#### Install Oh My Posh
+
+**winget**
+
+```bash
+winget install JanDeDobbeleer.OhMyPosh -s winget
+```
+
+**scoop**
+
+```bash
+scoop install https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/oh-my-posh.json
+```
+
+#### Next after install OhMyPosh
+
+1. Install font: [Nerd Font](https://github.com/ryanoasis/nerd-fonts)
+I choice `Hack Nerd Font` install by scoop
+
+```bash
+scoop bucket add nerd-fonts
+scoop install nerd-fonts/Hack-NF
+```
+
+2. Setting Font in Windows Powershell
+3. Choice a theme in [this](https://ohmyposh.dev/docs/themes)
+4. [Config prompt](https://ohmyposh.dev/docs/installation/prompt)
+5. Custom display ([learn more](https://ohmyposh.dev/))
+
+
 ## Node
 
-In working, multiple projects with Node with diffent node version. So to fast switch nodejs version you need use tool to manage it. If you manual install when need re-install to switch version is very uncomfortable. Even Nodejs itself recommends that we use a tool to manage version in [this link](https://nodejs.org/en/learn/getting-started/how-to-install-nodejs).
+In working, multiple projects with Node with different node version. So to fast switch nodejs version you need use tool to manage it. If you manual install when need re-install to switch version is very uncomfortable. Even Nodejs itself recommends that we use a tool to manage version in [this link](https://nodejs.org/en/learn/getting-started/how-to-install-nodejs).
 
 ### NVM
 
@@ -126,27 +176,27 @@ scoop install main/nvm
 
 ### FNM
 
-#### Install
+#### Install FNM
 
-\*\*winget
+**winget**
 
 ```bash
 winget install Schniz.fnm
 ```
 
-##### scoop
+**scoop**
 
 ```bash
 scoop bucket add main
 scoop install main/fnm
 ```
 
-**After install run**
+#### After install FNM
 
 - In PowerShell run `code $PROFILE` or your not have VSCode run `notepad $PROFILE`
 - Insert `fnm env --use-on-cd | Out-String | Invoke-Expression` into file and close
 - Reset your shell
 
-#### Usage
+#### Usage FNM
 
-**Similar NVM**
+> Similar NVM

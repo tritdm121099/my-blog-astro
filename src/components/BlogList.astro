@@ -1,0 +1,43 @@
+---
+import type { Frontmatter } from "@models/frontmatter";
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+import localizedFormat from "dayjs/plugin/localizedFormat";
+import BlogTag from "./BlogTag.astro";
+dayjs.extend(customParseFormat);
+dayjs.extend(localizedFormat);
+
+interface Props {
+  blogs: Frontmatter[];
+}
+
+const { blogs } = Astro.props;
+---
+
+<div class="blogs-container">
+  {
+    blogs.map((blog) => (
+      <div class="flex flex-col gap-2 py-4 px-8 bg-white dark:bg-slate-800 shadow-lg rounded-lg">
+        <time datetime={dayjs(blog.publishedAt).format("L")}>
+          {dayjs(blog.publishedAt).format("L")}
+        </time>
+        <a href=`../blog/${blog.slug}` >
+          <h2 class="text-4xl">{blog.title}</h2>
+        </a>
+
+        <ul>
+          {blog.tags.map((tag) => (
+            <li>
+              <BlogTag tag={tag} />
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))
+  }
+</div>
+<style>
+  .blogs-container {
+    @apply flex flex-col gap-2;
+  }
+</style>

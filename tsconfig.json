@@ -2,14 +2,14 @@
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
     "baseUrl": ".",
+    "target": "ESNext",
+    "module": "ESNext",
     "strictNullChecks": true,
-    "jsx": "react-jsx",
-    "jsxImportSource": "react",
     "paths": {
       "@assets/*": ["public/*"],
       "@layouts/*": ["src/layouts/*"],
       "@components/*": ["src/components/*"],
-      "@data/*": ["src/data/*"]
+      "@models/*": ["src/models/*"]
     }
   }
 }

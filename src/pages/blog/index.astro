@@ -1,0 +1,83 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { myName } from "../../data";
+import type { Frontmatter } from "@models/frontmatter";
+import dayjs from "dayjs";
+import BlogList from "../../components/BlogList.astro";
+import type { MarkdownInstance } from "astro";
+import { filterBlogNotComplete } from "../../data/utils";
+
+const pageTitle = `Blogs | ${myName}`;
+
+const glob = await Astro.glob<MarkdownInstance<Frontmatter>>(
+  "../../blogs/*.{md,mdx}"
+);
+
+const blogs = glob.map((data) => data.frontmatter);
+blogs.filter(filterBlogNotComplete).sort((a: Frontmatter, b: Frontmatter) =>
+  dayjs(a.publishedAt).diff(dayjs(b.publishedAt), "s")
+);
+---
+
+<BaseLayout pageTitle={pageTitle}>
+  <header
+    class="pb-5 flex justify-center px-10 py-5 border-b border-gray-700 dark:border-gray-300 mb-10"
+  >
+    <h1 class="blog-header">Blog</h1>
+  </header>
+
+  <section>
+    <BlogList blogs={blogs} />
+  </section>
+</BaseLayout>
+
+<style>
+  h1.blog-header {
+    /* copy */
+    --r: 0.5em; /* control the cutout of the ribbon */
+    --c: #1470d8;
+
+    padding-inline: calc(0.5em + var(--r));
+    text-align: center;
+    line-height: 2;
+    color: #fff;
+    background-image: linear-gradient(var(--c) 70%, #0000 0),
+      linear-gradient(
+        to bottom left,
+        #0000 50%,
+        color-mix(in srgb, var(--c), #000 40%) 51% 84%,
+        #0000 85%
+      );
+    background-position: 0 0.15lh;
+    background-size: 100% 1lh;
+    clip-path: polygon(
+      0 0.15lh,
+      100% 0.15lh,
+      calc(100% - var(--r)) 0.5lh,
+      100% 0.85lh,
+      100% calc(100% - 0.15lh),
+      0 calc(100% - 0.15lh),
+      var(--r) calc(100% - 0.5lh),
+      0 calc(100% - 0.85lh)
+    );
+    /* width: fit-content; you may need this in your real use case */
+    outline: none;
+  }
+
+  @supports not (height: 1lh) {
+    h1.blog-header {
+      background-position: 0 0.3em;
+      background-size: 100% 2em;
+      clip-path: polygon(
+        0 0.3em,
+        100% 0.3em,
+        calc(100% - var(--r)) 1em,
+        100% 1.7em,
+        100% calc(100% - 0.3em),
+        0 calc(100% - 0.3em),
+        var(--r) calc(100% - 1em),
+        0 calc(100% - 1.7em)
+      );
+    }
+  }
+</style>

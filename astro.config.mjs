@@ -6,6 +6,6 @@ import astroExpressiveCode from "astro-expressive-code";
 // https://astro.build/config
 export default defineConfig({
   site: "https://tdmtri99.github.io",
-  base: "my-blog-astro",
+  base: "/my-blog-astro",
   integrations: [astroExpressiveCode(), mdx(), tailwind()],
 });

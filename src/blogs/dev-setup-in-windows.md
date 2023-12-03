@@ -78,7 +78,13 @@ gh auth login
 
 ### Git GUI
 
-My option is [Fork](https://git-fork.com/). Many others Git GUI like [SourceTree](https://www.sourcetreeapp.com/), [GitKraken](https://www.gitkraken.com/)
+My option is [Fork](https://git-fork.com/). Many others Git GUI like [SourceTree](https://www.sourcetreeapp.com/), [GitKraken](https://www.gitkraken.com/) and [Git Cola](https://git-cola.github.io/), ect...
+`Fork` is friendly, easy to use for me.
+To install run
+
+```bash
+winget install Fork.Fork
+```
 
 ## Text Editor
 
@@ -100,13 +106,7 @@ scoop install main/neovim
 
 ## Terminal
 
-My choice is **Windows Terminal**. You can choose other Terminal like: [WezTerm](https://wezfurlong.org/wezterm/install/windows.html), [Hyper](https://hyper.is/) and [ConEmu](https://conemu.github.io/), [Git Cola](https://git-cola.github.io/), ect...
-`Fork` is friendly, easy to use for me.
-To install run
-
-```bash
-winget install Fork.Fork
-```
+My choice is **Windows Terminal**. You can choose other Terminal like: [WezTerm](https://wezfurlong.org/wezterm/install/windows.html), [Hyper](https://hyper.is/) and [ConEmu](https://conemu.github.io/).
 
 
 ### Installing Windows Terminal

@@ -10,6 +10,7 @@ import BlogTag from "../components/BlogTag.astro";
 import { filterBlogNotComplete } from "../data/utils";
 import type { MarkdownInstance } from "astro";
 import type { Frontmatter } from "../models";
+import CupCoffee from "../components/CupCoffee.astro";
 
 const favoriteTechnologies: {
   icon: string;
@@ -33,26 +34,30 @@ const tags = [
 ---
 
 <BaseLayout pageTitle={myName}>
-  <header class="pb-2">
-    <div class="flex items-center gap-2 pb-2">
-      <Image
-        src={seftImage}
-        alt="image of blog author"
-        width={60}
-        height={60}
-        class="rounded-full aspect-square overflow-hidden inline-flex"
-      />
-      <h1
-        class="mb-2 text-3xl font-bold dark:text-white text-slate-900 sm:text-4xl"
-      >
-        {myName}
-      </h1>
+  <header class="pb-2 flex gap-4 items-center">
+    <div>
+      <div class="flex items-center gap-2 pb-2">
+        <Image
+          src={seftImage}
+          alt="image of blog author"
+          width={60}
+          height={60}
+          class="rounded-full aspect-square overflow-hidden inline-flex"
+        />
+        <h1
+          class="mb-2 text-3xl font-bold dark:text-white text-slate-900 sm:text-4xl"
+        >
+          {myName}
+        </h1>
+      </div>
+      <Socials />
+      <p>
+        Welcome to my blog. I currently work as a full-stack web developer. In
+        this blog, I will share my knowledge about programming with you.
+      </p>
     </div>
-    <Socials />
-    <p>
-      Welcome to my blog. I currently work as a full-stack web developer. In
-      this blog, I will share my knowledge about programming with you.
-    </p>
+
+    <CupCoffee></CupCoffee>
   </header>
 
   <div class="pb-2">

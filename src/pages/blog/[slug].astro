@@ -36,7 +36,7 @@ const { Content, frontmatter } = blog;
 const pageTitle = `${frontmatter.title} | ${myName}`;
 ---
 
-<BaseLayout pageTitle={pageTitle}>
+<BaseLayout pageTitle={pageTitle} activeRoute="blog">
   <header class="pb-2">
     <h1 class="text-left text-5xl font-bold mb-6">
       {frontmatter.title}

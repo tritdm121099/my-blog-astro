@@ -5,7 +5,7 @@ import "../styles/global.css";
 
 interface Props {
   pageTitle: string;
-  activeRoute: ActiveRoute;
+  activeRoute: ActiveRoute | null;
 }
 
 const { pageTitle, activeRoute } = Astro.props;

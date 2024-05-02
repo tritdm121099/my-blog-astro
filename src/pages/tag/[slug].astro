@@ -3,10 +3,10 @@ import type { MarkdownInstance } from "astro";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import BlogList from "../../components/BlogList.astro";
-import { icons, myName } from "../../data";
+import { myName } from "../../data";
 import { filterBlogNotComplete } from "../../data/utils";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import type { Frontmatter } from "../../models";
+import type { AppIcon, Frontmatter } from "../../models";
 dayjs.extend(localizedFormat);
 
 interface StaticPath {
@@ -62,7 +62,6 @@ export async function getStaticPaths(): Promise<Array<StaticPath>> {
 const { blogs, tag } = Astro.props as StaticPath["props"];
 const { slug } = Astro.params as StaticPath["params"];
 const pageTitle = `${tag} | ${myName}`;
-const hashIcon = icons["hash"];
 ---
 
 <BaseLayout pageTitle={pageTitle} activeRoute="blog">

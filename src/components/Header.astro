@@ -6,7 +6,7 @@ const activeRoutes = ["home", "blog", "tip"] as const;
 export type ActiveRoute = (typeof activeRoutes)[number];
 
 interface Props {
-  activeRoute: ActiveRoute;
+  activeRoute: ActiveRoute | null;
 }
 
 const { activeRoute } = Astro.props;

@@ -3,14 +3,14 @@ import "../styles/global.css";
 import { Image } from "astro:assets";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import seftImage from "@assets/seft.jpg";
-import Icon from "astro-icon";
-import Socials from "../components/Socials.astro";
+import { Icon } from 'astro-icon/components'
+import Socials from "@components/Socials.astro";
 import { myName, icons } from "../data";
-import BlogTag from "../components/BlogTag.astro";
+import BlogTag from "@components/BlogTag.astro";
 import { filterBlogNotComplete } from "../data/utils";
 import type { MarkdownInstance } from "astro";
 import type { Frontmatter } from "../models";
-import CupCoffee from "../components/CupCoffee.astro";
+import CupCoffee from "@components/CupCoffee.astro";
 
 const favoriteTechnologies: {
   icon: string;
@@ -23,6 +23,8 @@ const favoriteTechnologies: {
 ];
 
 const allPosts: MarkdownInstance<Frontmatter>[] = await Astro.glob("../blogs/*.md");
+console.log('aaa', allPosts)
+
 const tags = [
   ...new Set(
     allPosts

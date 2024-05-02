@@ -13,7 +13,7 @@ const { activeRoute } = Astro.props;
 
 function classActiveRouteStyle(route: ActiveRoute): string {
   if (activeRoute === route) {
-    const className = "bg-blue-500/20 hover:bg-blue-500/30 rounded-full";
+    const className = "font-bold bg-blue-500/20 hover:bg-blue-500/30 rounded-full";
 
     return className + ' ';
   }

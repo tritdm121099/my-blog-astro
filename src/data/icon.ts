@@ -2,12 +2,12 @@ import type { Icon } from "../models/icon";
 import type { Tag } from "../models/tag";
 
 export const icons: { [key in Icon]: string } = {
-  nodejs: "logos:nodejs-icon",
-  typescript: "logos:typescript-icon",
-  angular: "logos:angular-icon",
-  nestjs: "logos:nestjs",
-  hash: "bi:hash",
-  keyboard: "mdi:keyboard-outline",
+  nodejs: "skill-icons:nodejs-dark",
+  typescript: "skill-icons:typescript",
+  angular: "skill-icons:angular-dark",
+  nestjs: "skill-icons:nestjs-dark",
+  hash: "ph:hash",
+  keyboard: "ph:keyboard",
 };
 
 export function getTagIcon(tag: Tag): string {

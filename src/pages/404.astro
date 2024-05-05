@@ -1,10 +1,12 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { Icon } from 'astro-icon/components'
+import type { AppIcon } from "../models/icon";
+import { BASE } from "../consts";
 
 const pageTitle = "Not found";
-const backIcon = "ep:back";
-const homeIcon = "ep:home-filled";
+const backIcon: AppIcon = "ph:caret-left";
+const homeIcon: AppIcon = "ph:castle-turret";
 ---
 
 <BaseLayout pageTitle={pageTitle} activeRoute={null}>
@@ -36,8 +38,8 @@ const homeIcon = "ep:home-filled";
       </button>
 
       <a
-        href="/"
-        class="flex gap-x-2 w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600"
+        href={BASE}
+        class="flex items-center gap-x-2 w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600"
       >
         <Icon name={homeIcon} class="w-5" />
         <span>Home page</span>

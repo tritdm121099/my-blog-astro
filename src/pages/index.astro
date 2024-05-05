@@ -25,7 +25,6 @@ const favoriteTechnologies: {
 
 const allPosts: MarkdownInstance<Frontmatter>[] =
   await Astro.glob("../blogs/*.md");
-console.log("aaa", allPosts);
 
 const tags = [
   ...new Set(

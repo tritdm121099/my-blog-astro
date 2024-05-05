@@ -1,3 +1,12 @@
+---
+title: Type extends check
+description: Typescript
+sidebar:
+  order: 1
+---
+
+## Problem
+
 ```typescript
 type Animal = {
     name: string;
@@ -22,10 +31,10 @@ function test(animal: Dog | Animal) {
 }
 ```
 
-```
+## Resolve
+
+```typescript
 function isDog(animal: Dog | Animal): animal is Dog {
     return "bark" in animal;
 }
 ```
-
-

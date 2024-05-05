@@ -17,6 +17,7 @@
     "@astrojs/react": "^3.3.1",
     "@astrojs/rss": "^4.0.5",
     "@astrojs/sitemap": "^3.1.4",
+    "@astrojs/starlight": "^0.22.1",
     "@astrojs/tailwind": "^5.1.0",
     "@iconify-json/bxl": "^1.1.10",
     "@iconify-json/logos": "^1.1.42",

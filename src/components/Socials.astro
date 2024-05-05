@@ -1,15 +1,20 @@
 ---
-import Icon from "astro-icon";
+import { Icon } from "astro-icon/components";
+import type { AppIcon } from "../models";
 
-const socials = [
+const socials: {
+  social: string;
+  icon: AppIcon;
+  link: string;
+}[] = [
   {
     social: "Github",
-    icon: "fe:github-alt",
+    icon: "bxl:github",
     link: "https://github.com/tdmtri99",
   },
   {
     social: "LinkedIn",
-    icon: "la:linkedin-in",
+    icon: "bxl:linkedin-square",
     link: "https://www.linkedin.com/in/nin-tri-truong/",
   },
 ];

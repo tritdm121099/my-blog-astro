@@ -3,25 +3,29 @@ import "../styles/global.css";
 import { Image } from "astro:assets";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import seftImage from "@assets/seft.jpg";
-import Icon from "astro-icon";
-import Socials from "../components/Socials.astro";
-import { myName, icons } from "../data";
-import BlogTag from "../components/BlogTag.astro";
+import { Icon } from "astro-icon/components";
+import Socials from "@components/Socials.astro";
+import { myName } from "../data";
+import BlogTag from "@components/BlogTag.astro";
 import { filterBlogNotComplete } from "../data/utils";
 import type { MarkdownInstance } from "astro";
 import type { Frontmatter } from "../models";
+import CupCoffee from "@components/CupCoffee.astro";
+import type { AppIcon } from "@models/icon";
 
 const favoriteTechnologies: {
-  icon: string;
+  icon: AppIcon;
   label: string;
 }[] = [
-  { icon: icons.nodejs, label: "Nodejs" },
-  { icon: icons.typescript, label: "TypeScript" },
-  { icon: icons.angular, label: "Angular" },
-  { icon: icons.nestjs, label: "NestJS" },
+  { icon: "logos:nodejs-icon", label: "Nodejs" },
+  { icon: "logos:typescript-icon", label: "TypeScript" },
+  { icon: "logos:angular-icon", label: "Angular" },
+  { icon: "logos:nestjs", label: "NestJS" },
 ];
 
-const allPosts: MarkdownInstance<Frontmatter>[] = await Astro.glob("../blogs/*.md");
+const allPosts: MarkdownInstance<Frontmatter>[] =
+  await Astro.glob("../blogs/*.md");
+
 const tags = [
   ...new Set(
     allPosts
@@ -32,27 +36,31 @@ const tags = [
 ];
 ---
 
-<BaseLayout pageTitle={myName}>
-  <header class="pb-2">
-    <div class="flex items-center gap-2 pb-2">
-      <Image
-        src={seftImage}
-        alt="image of blog author"
-        width={60}
-        height={60}
-        class="rounded-full aspect-square overflow-hidden inline-flex"
-      />
-      <h1
-        class="mb-2 text-3xl font-bold dark:text-white text-slate-900 sm:text-4xl"
-      >
-        {myName}
-      </h1>
+<BaseLayout pageTitle={myName} activeRoute="home">
+  <header class="pb-2 flex gap-4 items-center">
+    <div>
+      <div class="flex items-center gap-2 pb-2">
+        <Image
+          src={seftImage}
+          alt="image of blog author"
+          width={60}
+          height={60}
+          class="rounded-full aspect-square overflow-hidden inline-flex"
+        />
+        <h1
+          class="mb-2 text-3xl font-bold dark:text-white text-slate-900 sm:text-4xl"
+        >
+          {myName}
+        </h1>
+      </div>
+      <Socials />
+      <p>
+        Welcome to my blog. I currently work as a full-stack web developer. In
+        this blog, I will share my knowledge about programming with you.
+      </p>
     </div>
-    <Socials />
-    <p>
-      Welcome to my blog. I currently work as a full-stack web developer. In
-      this blog, I will share my knowledge about programming with you.
-    </p>
+
+    <CupCoffee />
   </header>
 
   <div class="pb-2">

@@ -1,20 +1,15 @@
-import type { Icon } from "../models/icon";
+import type { AppIcon } from "../models/icon";
 import type { Tag } from "../models/tag";
 
-export const icons: { [key in Icon]: string } = {
-  nodejs: "logos:nodejs-icon",
-  typescript: "logos:typescript-icon",
-  angular: "logos:angular-icon",
-  nestjs: "logos:nestjs",
-  hash: "bi:hash",
-  keyboard: "mdi:keyboard-outline",
-};
+export const logosIcons = ["logos:angular-icon", "logos:nestjs", "logos:nodejs-icon", "logos:typescript-icon"] as const;
+export const phIcons = ["ph:hash", "ph:keyboard", "ph:sun", "ph:moon", "ph:castle-turret", "ph:caret-left"] as const;
+export const bxlIcons = ["bxl:github", "bxl:linkedin-square"] as const;
 
-export function getTagIcon(tag: Tag): string {
+export function getTagIcon(tag: Tag): AppIcon {
   switch (tag) {
     case "Programming":
-      return icons.keyboard;
+      return "ph:keyboard";
     default:
-      return icons.hash;
+      return "ph:hash";
   }
 }

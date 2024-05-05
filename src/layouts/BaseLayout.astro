@@ -1,13 +1,14 @@
 ---
-import Header from "../components/Header.astro";
+import Header, { type ActiveRoute } from "../components/Header.astro";
 import { BASE } from "../consts";
 import "../styles/global.css";
 
 interface Props {
   pageTitle: string;
+  activeRoute: ActiveRoute | null;
 }
 
-const { pageTitle } = Astro.props;
+const { pageTitle, activeRoute } = Astro.props;
 ---
 
 <!doctype html>
@@ -22,7 +23,7 @@ const { pageTitle } = Astro.props;
   <body
     class="h-screen antialiased text-slate-500 dark:text-slate-400 bg-gray-200 dark:bg-slate-900"
   >
-    <Header />
+    <Header activeRoute={activeRoute} />
 
     <main class="mt-16 px-6 lg:px-0 mx-auto max-w-3xl">
       <slot />

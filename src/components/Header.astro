@@ -2,7 +2,7 @@
 import ToggleTheme from "./ToggleTheme.astro";
 import { BASE } from "../consts";
 
-const activeRoutes = ["home", "blog", "tip"] as const;
+const activeRoutes = ["home", "blog", "tip", "portfolio"] as const;
 export type ActiveRoute = (typeof activeRoutes)[number];
 
 interface Props {
@@ -30,6 +30,11 @@ function classActiveRouteStyle(route: ActiveRoute): string {
         class={classActiveRouteStyle("home") +
           "py-1 px-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400"}
         href={BASE}>Home</a
+      >
+      <a
+        class={classActiveRouteStyle("portfolio") +
+          "py-1 px-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400"}
+        href={BASE + "/portfolio"}>Portfolio</a
       >
       <a
         class={classActiveRouteStyle("blog") +

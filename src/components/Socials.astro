@@ -2,6 +2,12 @@
 import { Icon } from "astro-icon/components";
 import type { AppIcon } from "../models";
 
+interface Props {
+  className?: string;
+}
+
+const { className } = Astro.props;
+
 const socials: {
   social: string;
   icon: AppIcon;
@@ -20,7 +26,7 @@ const socials: {
 ];
 ---
 
-<div class="w-full flex gap-2 mb-4">
+<div class={className + " w-full flex gap-2 mb-4"}>
   {
     socials.map((social) => (
       <a

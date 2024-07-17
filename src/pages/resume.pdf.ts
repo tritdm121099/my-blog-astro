@@ -33,17 +33,11 @@ const githubIcon = `
 const linkedInIcon = `
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 256 256"><path fill="#0a66c2" d="M218.123 218.127h-37.931v-59.403c0-14.165-.253-32.4-19.728-32.4c-19.756 0-22.779 15.434-22.779 31.369v60.43h-37.93V95.967h36.413v16.694h.51a39.91 39.91 0 0 1 35.928-19.733c38.445 0 45.533 25.288 45.533 58.186zM56.955 79.27c-12.157.002-22.014-9.852-22.016-22.009s9.851-22.014 22.008-22.016c12.157-.003 22.014 9.851 22.016 22.008A22.013 22.013 0 0 1 56.955 79.27m18.966 138.858H37.95V95.967h37.97zM237.033.018H18.89C8.58-.098.125 8.161-.001 18.471v219.053c.122 10.315 8.576 18.582 18.89 18.474h218.144c10.336.128 18.823-8.139 18.966-18.474V18.454c-.147-10.33-8.635-18.588-18.966-18.453"/></svg>
 `;
+const arrowSquareOutIcon = `
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 256 256"><path fill="currentColor" d="M224 104a8 8 0 0 1-16 0V59.32l-66.33 66.34a8 8 0 0 1-11.32-11.32L196.68 48H152a8 8 0 0 1 0-16h64a8 8 0 0 1 8 8Zm-40 24a8 8 0 0 0-8 8v72H48V80h72a8 8 0 0 0 0-16H48a16 16 0 0 0-16 16v128a16 16 0 0 0 16 16h128a16 16 0 0 0 16-16v-72a8 8 0 0 0-8-8"/></svg>
+`;
 
 export const GET: APIRoute = async ({}) => {
-  PDFDocument.prototype.addSVG = function (
-    svg: string | SVGElement,
-    x: number | undefined,
-    y: number | undefined,
-    options: SVGtoPDF.SVGtoPDFOptions | undefined
-  ) {
-    return SVGtoPDF(this, svg, x, y, options), this;
-  };
-
   const __dirname = import.meta.dirname;
   const pathProject = path.join(__dirname, "../../");
 
@@ -63,13 +57,18 @@ export const GET: APIRoute = async ({}) => {
     pathProject,
     "/public/fonts/JetBrains/JetBrainsMono-BoldItalic.ttf"
   );
+  const logoHUSC = path.join(pathProject, "/public/pdf/resume/logo-husc.png");
+  let tempWidth = 0;
+  let xTemp = 0;
+  let yTemp = 0;
+  const xPadding = 50;
 
   const pdfPromise = new Promise<ArrayBuffer>((resolve) => {
     // config pdf
     const doc = new PDFDocument({
       font: font,
       layout: "portrait",
-      size: "A4",
+      // size: "A4",
     });
     const page = doc.page;
     doc.info.Author = "Tri Truong Dinh Minh";
@@ -136,13 +135,100 @@ export const GET: APIRoute = async ({}) => {
       doc.x + 20,
       doc.y + 1
     );
-    doc.text(" ", { lineBreak: true });
+    doc.moveDown(1);
+    doc.x = 55;
+
+    // Skills
+    doc.moveDown(0.5);
+    const widthSkill = sideBarWidth - 10;
+    doc.font(fontB).fontSize(16).text("Skills");
+    doc.fontSize(11).text("Programming Languages:");
+    doc
+      .font(font)
+      .text("Javascript, Typescript, Python.", { width: widthSkill });
+    doc.font(fontB).text("Framework:");
+    doc.font(font).text("Angular, Nestjs, Odoo.", { width: widthSkill });
+    doc.font(fontB).text("Testing:");
+    doc.font(font).text("Jest(UT), Cypress(E2E).", { width: widthSkill });
+    doc.font(fontB).text("Database:");
+    doc.font(font).text("Postgresql, MongoDB.", { width: widthSkill });
+    doc.font(fontB).text("Database migration & ORM:");
+    doc.font(font).text("Prisma, Flyway, mongoose.", { width: widthSkill });
+
+    doc.font(fontB).text("Languages:");
+    doc.font(font).text("English.", { width: widthSkill });
 
     // education
-    doc.fontSize(16).font(fontB).text("Education", 55).font(font).fontSize(11);
-    // doc.moveTo(50, 150);
-    // doc.lineTo(545, 150);
-    // doc.stroke();
+    doc.moveDown(0.5);
+    const logoHUSCWidth = 36;
+    doc.fontSize(16).font(fontB).text("Education").font(font).fontSize(11);
+    doc.image(logoHUSC, {
+      width: logoHUSCWidth,
+    });
+    doc.x = doc.x + logoHUSCWidth + 4;
+    doc
+      .font(fontB)
+      .text("HUE UNIVERSITY OF SCIENCES", {
+        width: sideBarWidth - 4 - logoHUSCWidth - 10,
+      })
+      .font(font);
+    doc.text("2017-2021");
+
+    // experiences
+    const xStartLine = 270;
+    const yStartLine = 220;
+    const experienceWidth = page.width - xStartLine - xPadding;
+    doc.font(fontB).fontSize(20).text("Experiences", xStartLine, yStartLine);
+    doc.fontSize(13).text("Web Developer");
+    doc.font(font).text("3S Intersoft JSC.", { lineBreak: false });
+    SVGtoPDF(doc, arrowSquareOutIcon, doc.x + 4, doc.y, {
+      width: 10,
+      height: 10,
+    });
+    doc.link(doc.x + 4, doc.y, 10, 10, "https://www.3si.vn/");
+    doc.moveDown(1);
+    doc
+      .font(fontI)
+      .fontSize(9)
+      .text("08/2021 - Present", xStartLine, undefined, { lineBreak: false });
+    const location3SCompany = "Hue, Viet Nam";
+    tempWidth = doc.widthOfString(location3SCompany);
+    doc
+      .font(font)
+      .text(location3SCompany, page.width - xPadding - tempWidth, undefined, {
+        width: tempWidth + 1,
+      });
+    SVGtoPDF(
+      doc,
+      mapPinIcon,
+      page.width - xPadding - tempWidth - 12,
+      doc.y - 12,
+      {
+        width: 9,
+        height: 9,
+      }
+    );
+    doc.moveDown(0.5).fontSize(11);
+    doc.text(
+      "Write API document (Swagger) and UML (PlantUML).",
+      xStartLine,
+      undefined,
+      {
+        width: experienceWidth,
+      }
+    );
+    doc.text(
+      "Technologies used: Angular, Nestjs, Nodejs, Docker, Postgres, Kafka, Flyway, etc.",
+      {
+        width: experienceWidth,
+      }
+    );
+    doc.text("Architecture: Microservices, Microfrontend.", {
+      width: experienceWidth,
+    });
+    doc.text("Projects count: 3.", {
+      width: experienceWidth,
+    });
 
     // get buffers data of file pdf
     const buffers: any[] = [];

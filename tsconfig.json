@@ -10,7 +10,12 @@
       "@assets/*": ["./public/*"],
       "@layouts/*": ["./src/layouts/*"],
       "@components/*": ["./src/components/*"],
-      "@models/*": ["./src/models/*"]
-    }
-  }
+      "@models/*": ["./src/models/*"],
+    },
+  },
+  "include": [
+    "./src/**/*.d.ts",
+    "./src/**/*.ts",
+    "./src/**/*.astro"
+  ]
 }

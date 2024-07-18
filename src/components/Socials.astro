@@ -1,6 +1,13 @@
 ---
 import { Icon } from "astro-icon/components";
 import type { AppIcon } from "../models";
+import { githubLink, linkedInLink } from "../data";
+
+interface Props {
+  className?: string;
+}
+
+const { className } = Astro.props;
 
 const socials: {
   social: string;
@@ -10,17 +17,17 @@ const socials: {
   {
     social: "Github",
     icon: "bxl:github",
-    link: "https://github.com/tdmtri99",
+    link: githubLink,
   },
   {
     social: "LinkedIn",
     icon: "bxl:linkedin-square",
-    link: "https://www.linkedin.com/in/nin-tri-truong/",
+    link: linkedInLink,
   },
 ];
 ---
 
-<div class="w-full flex gap-2 mb-4">
+<div class={className + " w-full flex gap-2 mb-4"}>
   {
     socials.map((social) => (
       <a

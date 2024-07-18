@@ -12,6 +12,8 @@ import type { MarkdownInstance } from "astro";
 import type { Frontmatter } from "../models";
 import CupCoffee from "@components/CupCoffee.astro";
 import type { AppIcon } from "@models/icon";
+import { BASE } from "../consts";
+const downloadIcon: AppIcon = 'ph:download';
 
 const favoriteTechnologies: {
   icon: AppIcon;
@@ -54,6 +56,9 @@ const tags = [
         </h1>
       </div>
       <Socials />
+      <a href={BASE + "/resume.pdf"} class="mb-2 px-2 py-1 w-fit flex gap-2 items-center transition-colors rounded-md border border-cyan-800 dark:border-cyan-200 hover:border-blue-500 dark:hover:border-blue-500 hover:text-blue-500">
+        Download my resume <Icon class="w-6 h-6" name={downloadIcon} />
+      </a>
       <p>
         Welcome to my blog. I currently work as a full-stack web developer. In
         this blog, I will share my knowledge about programming with you.

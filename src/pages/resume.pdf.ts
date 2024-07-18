@@ -71,8 +71,8 @@ export const GET: APIRoute = async ({}) => {
       // size: "A4",
     });
     const page = doc.page;
-    doc.info.Author = "Tri Truong Dinh Minh";
-    doc.info.Title = "Tri | Resume";
+    doc.info.Author = "Truong Dinh Minh Tri";
+    doc.info.Title = "Truong Dinh Minh Tri | Resume";
 
     // header
     doc.rect(0, 50, page.width, 60).fillAndStroke("#7e7e7e");
@@ -80,7 +80,7 @@ export const GET: APIRoute = async ({}) => {
     doc
       .fontSize(24)
       .font(fontB)
-      .text("Tri Truong Dinh Minh", 50, 50)
+      .text("Truong Dinh Minh Tri", 50, 50)
       .font(font)
       .moveDown(0);
     doc.fontSize(16).text("Web Developer").moveDown(0);
@@ -146,14 +146,19 @@ export const GET: APIRoute = async ({}) => {
     doc
       .font(font)
       .text("Javascript, Typescript, Python.", { width: widthSkill });
-    doc.font(fontB).text("Framework:");
-    doc.font(font).text("Angular, Nestjs, Odoo.", { width: widthSkill });
+    doc.font(fontB).text("Environment & Framework:");
+    doc.font(font).text("Angular, Nestjs, Nodejs, Odoo, Tailwindcss.", { width: widthSkill });
     doc.font(fontB).text("Testing:");
     doc.font(font).text("Jest(UT), Cypress(E2E).", { width: widthSkill });
     doc.font(fontB).text("Database:");
     doc.font(font).text("Postgresql, MongoDB.", { width: widthSkill });
     doc.font(fontB).text("Database migration & ORM:");
     doc.font(font).text("Prisma, Flyway, mongoose.", { width: widthSkill });
+    
+    doc.font(fontB).text("Tools:");
+    doc.font(font).text("Git, Github, Jira.", { width: widthSkill });
+    doc.font(fontB).text("Other packages:");
+    doc.font(font).text("Kafka, Storybook, Ngrx.", { width: widthSkill });
 
     doc.font(fontB).text("Languages:");
     doc.font(font).text("English.", { width: widthSkill });
@@ -161,18 +166,21 @@ export const GET: APIRoute = async ({}) => {
     // education
     doc.moveDown(0.5);
     const logoHUSCWidth = 36;
-    doc.fontSize(16).font(fontB).text("Education").font(font).fontSize(11);
+    doc.fontSize(16).font(fontB).text("Education").font(font);
     doc.image(logoHUSC, {
       width: logoHUSCWidth,
     });
     doc.x = doc.x + logoHUSCWidth + 4;
     doc
+      .fontSize(13)
       .font(fontB)
       .text("HUE UNIVERSITY OF SCIENCES", {
         width: sideBarWidth - 4 - logoHUSCWidth - 10,
-      })
-      .font(font);
-    doc.text("2017-2021");
+      });
+    doc.fontSize(11).text("Bachelor of Information Technology", {
+      width: sideBarWidth - 4 - logoHUSCWidth - 10,
+    });
+    doc.font(font).text("2017-2021");
 
     // experiences
     const xStartLine = 270;
@@ -208,27 +216,22 @@ export const GET: APIRoute = async ({}) => {
         height: 9,
       }
     );
-    doc.moveDown(0.5).fontSize(11);
-    doc.text(
-      "Write API document (Swagger) and UML (PlantUML).",
-      xStartLine,
-      undefined,
+    doc.moveDown(0.5).fontSize(10);
+    doc.x = xStartLine;
+    doc.list(
+      [
+        "Web site development and maintenance.",
+        "Contribution design system by write API document (Swagger), write document for Kafka (AsyncAPI) and UML (PlantUML).",
+        "Use Jest to testing code at both FE and BE. At FE, write E2E test by Cypress.",
+        "Technologies used: Angular, Nestjs, Nodejs, Docker, Postgres, Kafka, Flyway, etc.",
+        "Architecture: Microservices, Microfrontend.",
+        "Projects count: 2.",
+      ],
       {
         width: experienceWidth,
+        bulletRadius: 2,
       }
     );
-    doc.text(
-      "Technologies used: Angular, Nestjs, Nodejs, Docker, Postgres, Kafka, Flyway, etc.",
-      {
-        width: experienceWidth,
-      }
-    );
-    doc.text("Architecture: Microservices, Microfrontend.", {
-      width: experienceWidth,
-    });
-    doc.text("Projects count: 3.", {
-      width: experienceWidth,
-    });
 
     // get buffers data of file pdf
     const buffers: any[] = [];

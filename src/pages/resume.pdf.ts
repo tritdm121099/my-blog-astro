@@ -1,7 +1,6 @@
 // import jsdom from "jsdom";
 import type { APIRoute } from "astro";
-import fs from "fs";
-import path from "path";
+import * as path from "path";
 import PDFDocument from "pdfkit";
 import SVGtoPDF from "svg-to-pdfkit";
 import { githubLink, linkedInLink } from "../data";
@@ -37,8 +36,13 @@ const arrowSquareOutIcon = `
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 256 256"><path fill="currentColor" d="M224 104a8 8 0 0 1-16 0V59.32l-66.33 66.34a8 8 0 0 1-11.32-11.32L196.68 48H152a8 8 0 0 1 0-16h64a8 8 0 0 1 8 8Zm-40 24a8 8 0 0 0-8 8v72H48V80h72a8 8 0 0 0 0-16H48a16 16 0 0 0-16 16v128a16 16 0 0 0 16 16h128a16 16 0 0 0 16-16v-72a8 8 0 0 0-8-8"/></svg>
 `;
 
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 export const GET: APIRoute = async ({}) => {
-  const __dirname = import.meta.dirname;
+  // const __dirname = import.meta.dirname;
   const pathProject = path.join(__dirname, "../../");
 
   const font = path.join(
